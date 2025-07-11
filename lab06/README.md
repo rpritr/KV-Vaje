@@ -1,17 +1,35 @@
 # Zaščita končnih naprav
 
-Pregledali boste zaščitne mehanizme na osebnih napravah.
+Osebni računalniki, telefoni in druge naprave so tarče napadov. V tej vaji boste preverili zaščitne mehanizme in nastavili osnovne ukrepe za zaščito naprave.
 
-## 🎯 Cilji
-- Prepoznati varnostne ranljivosti in konfigurirati zaščito.
+# 🧪 Zaščita končnih naprav
 
-## 🧪 Vaja
-Namestite protivirusni program in nastavite požarni zid.
+Osebni računalniki, telefoni in druge naprave so tarče napadov. V tej vaji boste preverili zaščitne mehanizme in nastavili osnovne ukrepe za zaščito naprave.
 
-## 📝 Analiza in poročilo
-- Kaj ste ugotovili?
-- Katere ukrepe priporočate?
-- Katere napake ste prepoznali?
+## 1️⃣ Uvod
 
-## 🔍 Refleksija
-- Kako bi ravnali drugače v praksi?
+Cilj je, da se kot uporabniki naučimo kako:  
+✅ razumeti osnovna načela in nevarnosti povezane s temo vaje  
+✅ prepoznati ključne ukrepe za zaščito  
+✅ praktično uporabiti orodja in metode  
+✅ ozavestiti pomen pravilnega ravnanja
+
+## 2️⃣ Aktivnost
+
+### 🖥️ Navodila
+
+- Izvedite praktične korake, opisane pri vaji v učilnici oz. gradivu.
+- Dokumentirajte potek dela, opažanja in rezultate.
+- Odgovorite na vprašanja za refleksijo.
+
+### 📝 Analiza in poročilo
+
+- Katere ranljivosti ste zaznali?
+- Katere ukrepe bi priporočili?
+- Kaj je bilo nepričakovano?
+
+## 3️⃣ Refleksija in analiza
+
+- Kaj ste se novega naučili?
+- Kaj bi v praksi spremenili?
+- Kako bi to znanje uporabili na svojem primeru?
