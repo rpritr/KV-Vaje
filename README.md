@@ -6,14 +6,14 @@ Repozitorij vsebuje vaje za predmet **Kibernetska varnost** (MAG, RST), ki zajem
 
 | Mapa   | Vsebina vaje |
 |--------|---------------|
-| `lab01` | Uvod v kibernetsko varnost in Linux |
-| `lab02` | Identiteta in zasebnost posameznika |
-| `lab03` | OSINT: zbiranje informacij o posameznikih |
-| `lab04` | Testiranje varnosti gesel z razbijanjem zgoščenih vrednosti |
-| `lab05` | Varna komunikacija (šifrirana e-pošta, sporočila) |
-| `lab06` | Zaščita končnih naprav (požarni zid, antivirus, posodobitve) |
+| `lab01` | Varnost posameznikov v kibernetskem prostoru |
+| `lab02` | OSINT – zbiranje informacij o posameznikih na spletu |
+| `lab03` | Testiranje varnosti gesel z razbijanjem zgoščenih vrednosti |
+| `lab04` | Uvod v Kali Linux |
+| `lab05` | Prepoznavanje in preprečevanje phishing napadov |
+| `lab06` | Testiranje SSH varnosti z Nmap in Hydra |
 | `lab07` | Varnost v oblakih in uporaba večfaktorske avtentikacije |
-| `lab08` | Prepoznavanje in preprečevanje phishing napadov |
+| `lab08` | Varna komunikacija (šifrirana e-pošta, sporočila) |
 | `lab09` | Preizkus varnosti spletnih aplikacij (osnove) |
 | `lab10` | Incident response — ukrepanje ob napadu |
 | `lab11` | Pravne in etične dileme v kibernetski varnosti |
