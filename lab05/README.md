@@ -1,22 +1,21 @@
-# Prepoznavanje in preprečevanje phishing napadov
+# Uvod v Kali Linux
 
-📅 **Trajanje: 2 uri**
+Na tej vaji boste spoznali okolje **Kali Linux**, ki je standardno orodje za testiranje varnosti in etični hacking. Seznanili se boste z namenom uporabe Kali Linuxa, njegovimi glavnimi orodji in osnovnimi koncepti, ki jih mora poznati vsak varnostni strokovnjak.
 
-Na tej vaji boste spoznali, kako delujejo phishing napadi, kako jih prepoznati in zakaj so nevarni. Praktično boste izvedli simulacijo phishing napada z uporabo Social Engineering Toolkita (SET) in preprostega obrazca ter analizirali zajete podatke.
+# 🧪 Uvod v Kali Linux
 
-# 🧪 Prepoznavanje in preprečevanje phishing napadov
-
-Phishing je ena najpogostejših tehnik socialnega inženiringa, s katero napadalci uporabnike pretentajo, da sami vnesejo svoje prijavne podatke na lažno stran. Cilj te vaje je, da se naučite, kako takšne strani izgledajo, kako delujejo in kako pomembno je prepoznati znake napada.
+Kali Linux je specializirana distribucija Linuxa, ki jo uporabljajo varnostni strokovnjaki za izvajanje preizkusov vdorov, analiz omrežij, forenzične analize in drugih varnostnih nalog. Vsebuje več kot 600 prednameščenih orodij.  
+Poznavanje okolja Kali Linux je pomembno, saj omogoča izvajanje simulacij napadov in odkrivanje ranljivosti, še preden jih izkoristijo napadalci.
 
 ---
 
 ## 1️⃣ Uvod
 
 Cilj je, da se kot uporabniki naučimo kako:  
-✅ prepoznati tipične znake phishing strani  
-✅ izvesti simulacijo phishing napada z uporabo SET  
-✅ analizirati zajete podatke in razumeti omejitve  
-✅ ozavestiti pomen preverjanja URL in varnostnih indikatorjev
+✅ razumeti namen in vlogo Kali Linuxa v kibernetski varnosti  
+✅ se znajti v osnovnem grafičnem in ukaznem okolju Kali Linuxa  
+✅ najti in zagnati nekaj ključnih orodij  
+✅ izvesti osnovne ukaze in analizirati rezultate
 
 ---
 
@@ -28,86 +27,61 @@ Cilj je, da se kot uporabniki naučimo kako:
 
 ---
 
-#### 1️⃣ Priprava testnega obrazca
-- Na svojem računalniku naredite datoteko `login.html` z naslednjo vsebino:
-```html
-<!DOCTYPE html>
-<html lang="sl">
-<head>
-<meta charset="UTF-8">
-<title>Prijava</title>
-</head>
-<body>
-<h2>Prijava v sistem</h2>
-<form method="POST" action="">
-  Uporabniško ime: <input type="text" name="username"><br>
-  Geslo: <input type="password" name="password"><br>
-  <input type="submit" value="Prijava">
-</form>
-</body>
-</html>
-```
-
-Shranjeno stran odprite v brskalniku — to je preprost prijavni obrazec, ki ga bomo uporabili kot tarčo.
+#### 1️⃣ Kaj je Kali Linux?
+- Preberite osnovne informacije o Kali Linuxu na: [https://www.kali.org](https://www.kali.org)
+- Zapišite, kdo razvija Kali Linux in za kakšne namene je namenjen.
+- Naštejte 3 področja uporabe Kali Linuxa (npr. penetration testing, digital forensics …).
 
 ---
 
-#### 2️⃣ Zagon SET in kloniranje strani
-- Zaženite SET:
+#### 2️⃣ Zagon okolja Kali Linux
+- Zaženite virtualni stroj z **Kali Linuxom** ali uporabite pripravljeno učilniško namestitev.
+- Raziskujte grafično okolje (meniji, sistemske informacije).
+- Poiščite meni z varnostnimi orodji in naštejte 5 orodij, ki jih najdete.
+
+---
+
+#### 3️⃣ Preverjanje sistema in osnovni ukazi
+Odprite **terminal** in izvedite naslednje ukaze ter zapišite rezultate.
+
+| Ukaz                     | Pomen |
+|--------------------------|-------|
+| `whoami`                 | Prikaže prijavljenega uporabnika |
+| `hostnamectl`            | Pokaže ime gostitelja in OS |
+| `uname -a`               | Pokaže podatke o jedru |
+| `df -h`                  | Prikaže zasedenost diska |
+| `ip a`                   | Pokaže mrežne nastavitve |
+
+Primer:
 ```bash
-sudo setoolkit
+whoami
+hostnamectl
+uname -a
+df -h
+ip a
 ```
 
-- Izberite menije:
-  ```
-  1) Social-Engineering Attacks
-  2) Website Attack Vectors
-  3) Credential Harvester Attack Method
-  2) Site Cloner
-  ```
+4️⃣ Preverjanje orodij v terminalu
 
-- Ko vas vpraša za IP naslov za zajem podatkov, vpišite svoj lokalni IP naslov (npr. `192.168.x.x`) ali pustite predlaganega.
-
-- Za URL kloniranja vpišite pot do vaše `login.html`:
-  ```
-  file:///home/youruser/login.html
-  ```
-
-- SET bo pripravil lažno stran in začel poslušati na portu 80.
-
----
-
-#### 3️⃣ Testiranje
-- Odprite brskalnik in obiščite naslov:
-  ```
-  http://<tvoj_IP>
-  ```
-- Vpišite testne podatke (npr. uporabnik: `test`, geslo: `geslo123`).
-
-- V SET terminalu boste videli zajete podatke:
-  ```
-  [*] WE GOT A HIT!
-  username: test
-  password: geslo123
-  ```
-
----
+```bash
+which nmap
+which john
+which hydra
+which sqlmap
+which nikto
+```
 
 ### 📝 Analiza in poročilo
 
 Oddajte poročilo z naslednjimi vsebinami:
-- Posnetek zaslona lažne prijavne strani
-- Posnetek zaslona terminala s zajetimi podatki
-- Kratek opis, kako bi žrtev prepoznala, da gre za phishing stran
+- Kratek opis Kali Linuxa in njegovih področij uporabe
+- Izpisi zgoraj navedenih ukazov
+- Seznam 5 orodij iz menija in 5 orodij iz terminala
+- Komentar: kaj vas je presenetilo pri okolju Kali Linux?
 
----
+⸻
 
 ## 3️⃣ Refleksija in analiza
-
-- Katere značilnosti so značilne za phishing strani (npr. napačen URL)?
-- Kako bi se zaščitili pred takšnim napadom?
-- Zakaj moderne strani otežujejo takšne napade?
-
----
-
-📄 *Opomba: Vaja je namenjena izključno izobraževalnim namenom. Nikoli ne izvajajte teh tehnik na resničnih uporabnikih brez njihove vednosti in dovoljenja.*
+	•	Zakaj je pomembno izvajati preizkuse varnosti v varnem okolju?
+	•	Katere funkcionalnosti Kali Linuxa so vas najbolj pritegnile?
+	•	Kako bi v prihodnje uporabili to znanje v praksi?

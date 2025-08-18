@@ -1,139 +1,117 @@
-# Testiranje SSH varnosti z Nmap in Hydra
+# Testiranje varnosti gesel z razbijanjem zgoščenih vrednosti
 
-📅 **Trajanje: 2 uri**
+Gesla so še vedno najpogosteje uporabljeno sredstvo za avtentikacijo, a pogosto so šibka ali ponovno uporabljena. V tej vaji bomo spoznali, kako deluje napad z uporabo slovarjev na slabo izbrana gesla. Namen vaje je pokazati, zakaj je pomembno uporabljati kompleksna in dolga gesla.
 
-V tej vaji boste preizkusili dve ključni tehniki testiranja varnosti oddaljenih sistemov:
-- odkrivanje odprtih vrat in storitev z orodjem `nmap`
-- brute-force napad na SSH storitev z orodjem `hydra`
 
-Namen vaje je pokazati, kako napadalci pridobijo informacije o sistemu in zakaj je zaščita SSH storitve in zapiranje neuporabljenih vrat ključna za varnost.
+# 🧪 Testiranje varnosti gesel z razbijanjem zgoščenih vrednosti
 
----
+Z gesli posamezniki in organizacije varujejo dostop do sistemov, podatkov in storitev.
 
-# 🐳 Priprava okolja z Dockerjem
+Kljub temu pa mnogi še vedno uporabljajo kratka, enostavna ali ponovno uporabljena gesla, kar napadalcem omogoča hitro ugibanje ali iskanje ujemanj v predpripravljenih seznamih. Raziskave kažejo, da so med najpogostejšimi gesli še vedno »123456«, »password« in podobne kombinacije, ki jih napadalci uganejo v nekaj sekundah.
 
-Pred začetkom vaje vzpostavite ciljni sistem z Dockerjem na vašem host računalniku.  
-Na voljo imate Docker image z ranljivim SSH strežnikom, ki omogoča testiranje napadov.
+Da bi shranjevanje gesel na strežnikih bilo varnejše, se namesto dejanskih (čistopisnih) gesel shranjujejo njihove zgoščene vrednosti. Zgoščevanje (hashing) je enosmerni matematični proces, pri katerem iz gesla izračunamo krajši niz znakov, imenovan hash, iz katerega (v teoriji) izvirnega gesla ni mogoče obnoviti. Čeprav zgoščevanje preprečuje neposredno krajo gesel v primeru vdora v bazo podatkov, pa ne pr
 
-### 🔷 Korak 0: Zagon Docker SSH strežnika
 
-Če še niste, najprej zgradite Docker image z imenom `dvws`:
-```bash
-docker build -t dvws .
-```
-
-Nato zaženite container:
-```bash
-docker run -d -p 2222:22 --name dvws-ssh dvws
-```
-
-SSH strežnik bo zdaj na voljo na host računalniku na naslovu `<target_ip>`, port `2222`, z uporabnikom `testuser` in geslom `test123`.
-
----
-
-# 🧪 Testiranje SSH varnosti z Nmap in Hydra
-
-SSH (Secure Shell) je standarden protokol za oddaljeno prijavo v strežnik. Šibka gesla ali odprte nepotrebne storitve omogočajo napadalcem hitro pridobitev dostopa.  
-V tej vaji boste najprej s `nmap` ugotovili odprta vrata in storitve, nato pa z `hydra` preverili moč gesel.
-
----
-
-## 1️⃣ Uvod
+## 1️⃣ Uvod: Upravljanje osebnih identitet
 
 Cilj je, da se kot uporabniki naučimo kako:  
-✅ uporabiti orodje Nmap za odkrivanje odprtih vrat in storitev  
-✅ uporabiti orodje Hydra za preverjanje gesel na SSH  
-✅ razumeti nevarnosti šibkih gesel in odprtih storitev
+✅ razumeti, kako deluje zgoščevanje (hashing) gesel  
+✅ videti razliko med šibkimi in močnimi gesel  
+✅ praktično uporabiti orodja za »cracking« gesel  
+✅ ozavestiti pomen varnih gesel in zakaj ne uporabljamo slabih  
 
----
+### Varnost zgoščenih vrednosti
 
-## 2️⃣ Aktivnost
+Zgoščevanje (hashing) je enosmerni matematični postopek, ki iz poljubno dolgega niza podatkov izračuna fiksno dolgo »prstno odtisno« vrednost (hash). V informacijskih sistemih se uporablja predvsem za shranjevanje preverjanj gesel, saj strežnik ne shranjuje dejanskih gesel, temveč njihove zgoščene vrednosti. Ko uporabnik vnese geslo, sistem izračuna njegov hash in ga primerja s shranjenim.
 
-### 🖥️ Navodila
+Čeprav je zgoščevanje pomemben varnostni mehanizem, pa samo po sebi ne preprečuje napadov. Napadalci lahko s slovarskimi ali brutalnimi napadi ugibajo gesla in izračunavajo njihove hash-e, dokler ne najdejo ujemanja. Zato so ključni dodatni ukrepi, kot so uporaba dolgih in kompleksnih gesel, uporaba »soli« (salt), ki prepreči uporabo vnaprej pripravljenih tabel (rainbow tables), ter počasnejši algoritmi (npr. bcrypt, scrypt ali Argon2), ki otežijo množično računanje hash-ov.
 
-Študenti boste izvedli naslednje korake in dokumentirali rezultate:
+Pomembno je torej razumeti, da varnost gesla ne zagotavlja le zgoščevanje, ampak kombinacija varnostnih praks: močna gesla, dodajanje soli in uporaba primernih algoritmov.
 
----
 
-### 🔷 Korak 1: Skeniranje odprtih vrat z Nmap
+## 2️⃣ Aktivnost: Uporaba John The Ripper za razbijanje zgoščenih vrednosti
 
-Najprej preverite, katere storitve so dostopne na ciljnem sistemu:
+### 🖥️ John The Rippper
+
+#### Navodila za namestitev
+
+1️⃣ Namestite John the Ripper (če še ni nameščen):
+
 
 ```bash
-nmap -sS -sV -O -p- <target_ip>
+sudo apt update
+sudo apt install john
 ```
 
-Parametri:
-- `-sS` — SYN skeniranje (tišje)
-- `-sV` — zazna različice storitev
-- `-O` — zazna operacijski sistem (če je mogoče)
-- `-p-` — skeniraj vsa vrata (1-65535)
+2️⃣ Preverite, ali imate wordlist:
 
-Zapišite si:
-- katera vrata so odprta
-- katere storitve tečejo
-- katero različico operacijskega sistema je zaznal
-
-💡 Refleksija: zakaj zapirati neuporabljene porte?
-
----
-
-### 🔷 Korak 2: Preveri SSH povezavo
-
-Prepričajte se, da SSH storitev deluje:
 ```bash
-ssh testuser@<target_ip> -p 2222
+ls /usr/share/wordlists/rockyou.txt
 ```
-Geslo: `test123`
 
----
-
-### 🔷 Korak 3: Ustvari seznam gesel
-
-Če želite hitrejši test, ustvarite svoj seznam gesel:
+Če ga ni, ga prenesite:
 ```bash
-echo -e "password
-123456
-test123
-admin" > passwords.txt
+wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 ```
 
----
+🔐 Priprava podatkov
 
-### 🔷 Korak 4: Brute-force napad z Hydra
-
-Uporabite Hydra za napad:
+1️⃣ Ustvarite datoteko gesla.txt z nekaj primeri:
 ```bash
-hydra -l testuser -P passwords.txt -s 2222 <target_ip> ssh
+Password1
+qwerty123
+My$Strong&Pass2024
+letmein
+Summer2024
 ```
 
-Parametri:
-- `-l testuser` — uporabniško ime
-- `-P passwords.txt` — seznam gesel
-- `-s 2222` — številka vrat
-- `<target_ip>` — IP naslov strežnika
-- `ssh` — protokol
+2️⃣ Pretvorite gesla v zgoščene vrednosti z ukazom openssl:
 
-Hydra bo ob uspehu izpisal nekaj takega:
-```
-[22][ssh] host: <target_ip>   login: testuser   password: test123
+```bash
+n=1; while read pass; do echo "user$n:$(echo -n "$pass" | md5sum | awk '{print $1}')"; n=$((n+1)); done < gesla.txt > hashes.txt
 ```
 
----
+Datoteka hashes.txt bo vsebovala MD5 hashe:
 
-## 3️⃣ Analiza in poročilo
+```bash
+2ac9cb7dc02b3c0083eb70898e549b63
+3fc0a7acf087f549ac2b266baf94b8b1
+d09b2f134b49212fb6966b5d337047e5
+0d107d09f5bbe40cade3de5c71e9e9b7
+e90664c0af74160644d29e4d6147969b
+```
 
-Oddajte poročilo z naslednjimi vsebinami:
-- Izpis rezultatov `nmap` (katere storitve/vrata so odprta)
-- Izpis rezultatov `hydra` (ali je geslo najdeno)
-- Posnetki zaslona obeh rezultatov
-- Kratek komentar: zakaj je uporaba šibkih gesel nevarna in zakaj zapirati neuporabljene porte
+🚀 Izvedba napada
 
----
+1️⃣ Zaženite napad z uporabo wordlista:
+```bash
+john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
+```
 
-## 4️⃣ Refleksija in analiza
+2️⃣ Prikaz najdenih gesel:
 
-- Kako bi zaščitili SSH strežnik pred brute-force napadi?
-- Katere dodatne ukrepe (npr. omejitve po številu prijav, uporaba javno-zasebnih ključev, firewall) bi priporočili?
-- Kako se spremeni rezultat, če uporabimo zelo močno geslo?
+```bash
+john --show hashes.txt
+```
 
+### 📝 Analiza in poročilo
+
+- Zabeležite, katera gesla so bila najdena in kako hitro.
+- Katerega močnega gesla program ni našel? Zakaj?
+
+## 3️⃣ Refleksija in analiza
+
+- Kako se povečuje ocena varnosti, ko dodajate dolžino?
+- Kako vplivajo posebni znaki na oceno?
+- Kako se ocenjuje “passphrase” v primerjavi s klasičnim geslom?
+- Katero geslo bi priporočili za vsakodnevno uporabo in zakaj?
+
+
+## Reference
+
+
+1. John the Ripper, *John the Ripper password cracker
+*, https://www.openwall.com/john/
+2. John the Ripper, GitHub, https://github.com/openwall/john
+3. Rockyou.txt wordlist, https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+4. OpenAI. (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/

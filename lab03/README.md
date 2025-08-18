@@ -1,109 +1,167 @@
-# Testiranje varnosti gesel z razbijanjem zgoščenih vrednosti
 
-📅 **Trajanje: 2 uri**
+# MetaOSINT – Kaj vse razkrije fotografija?
 
-Gesla so še vedno najpogosteje uporabljeno sredstvo za avtentikacijo, a pogosto so šibka ali ponovno uporabljena. V tej vaji bomo spoznali, kako deluje napad z uporabo slovarjev na slabo izbrana gesla. Namen vaje je pokazati, zakaj je pomembno uporabljati kompleksna in dolga gesla.
+EXIT (angl. Exchangeable Image File Format) je standard za shranjevanje metapodatkov v slikovnih, zvočnih in drugih večpredstavnostnih datotekah. Velikokorat naprave kot so digitalni fotoaparati in mobilni telefoni shranjujejo tovrstne informacije v fotografije.
+
+Ta vaja je namenjena raziskovanju informacij, ki jih lahko razkrijemo s pomočjo **metapodatkov v fotografijah (EXIF)**. S pomočjo različnih orodij bomo analizirali fotografije in ugotavljali informacije, ki jih lahko s pomočjo MetOSINT razkrijemo, kot so lokacija in čas nastanka fotografije, naprava in druge skrite podatke.
+
+## 1️⃣ Uvod: Zbiranje informacij o fotografijah
+
+Cilji vaje so:  
+✅ Razumeti pomen metapodatkov v digitalnih fotografijah.  
+✅ Uporabiti OSINT orodja za analizo EXIF podatkov.  
+✅ Oceniti tveganja, povezana z deljenjem slik na spletu.  
+✅ Razviti kritično razmišljanje o zasebnosti in digitalnih sledeh.
+
+---
+
+### MetaOSINT
+
+MetaOSINT je tehnika v okviru OSINT (Open Source INTelligence), kjer analiziramo metapodatke datotek, predvsem fotografij z namenom pridobivanja informacij o izvoru, napravi, avtorju ali času nastanka.
+
+V kolikor fotografija vsebuje metapodatke lahko iz njih pridobimo npr. GPS podatke in določimo točno lokacijo nastanka fotografije. Metapodatki tudi razkrijejo, ali je bila slika naknadno urejena. Iz metapodatko pa lahko pridobimo tudi podatke o avtorju in napravi.
+
+---
+
+### 🔍 Orodja za analizo EXIF metapodatkov
+
+Obstaja veliko orodij za analizo metapodatkov. 
+
+Najbolj pogosto uporabljeno orodje je exiftool (https://exiftool.org/)
+
+[Dokumentacija in GitHub](https://github.com/exiftool/exiftool)
+
+Obstaja pa tudi veliko spletnih orodij: 
+-  [https://www.pic2map.com/](https://www.pic2map.com/)
+- [https://exif.tools/](https://exif.tools/)
+- [Online Exif Viewer](https://onlineexifviewer.com/)  
+
+---
+
+## 🖼️ Uporaba MetaOSINT na fotografijah
+
+Uporabili bomo testno sliko z vključenimi EXIF podatki, fotografijo bomo vzeli iz zbirke exif-samples, lahko pa tudi uporabite vašo lastno fotografijo, npr iz mobilnega telefona
+
+Najprej torej izberemo fotograifijo:
+- [https://github.com/ianare/exif-samples](https://github.com/ianare/exif-samples)
+- Ali pa sliko z lastnim mobilnim telefonom (poskrbite, da ima vključeno lokacijo).
+
+---
 
 
-# 🧪 Testiranje varnosti gesel z razbijanjem zgoščenih vrednosti
+## 📝 Navodila za izvedbo
 
-Z gesli posamezniki in organizacije varujejo dostop do sistemov, podatkov in storitev.
+1. **Izberite fotografijo z EXIF podatki**
+   - Zaželjeno je, da je to fotografija, ki je bila posneta z mobilno napravo z omogočeno lokacijo.
 
-Kljub temu pa mnogi še vedno uporabljajo kratka, enostavna ali ponovno uporabljena gesla, kar napadalcem omogoča hitro ugibanje ali iskanje ujemanj v predpripravljenih seznamih. Raziskave kažejo, da so med najpogostejšimi gesli še vedno »123456«, »password« in podobne kombinacije, ki jih napadalci uganejo v nekaj sekundah.
+2. **Naložite fotografijo v spletno orodje**
+   - Odprite [https://pic2map.com](https://pic2map.com) ali [https://exif.tools](https://exif.tools)
+   - Naložite svojo testno sliko.
+   - Oglejte si rezultate analize: GPS, datum, čas, naprava, orientacija itd.
 
-Da bi shranjevanje gesel na strežnikih bilo varnejše, se namesto dejanskih (čistopisnih) gesel shranjujejo njihove zgoščene vrednosti. Zgoščevanje (hashing) je enosmerni matematični proces, pri katerem iz gesla izračunamo krajši niz znakov, imenovan hash, iz katerega (v teoriji) izvirnega gesla ni mogoče obnoviti. Čeprav zgoščevanje preprečuje neposredno krajo gesel v primeru vdora v bazo podatkov, pa ne pr
+3. **Analizirajte lokacijo**
+   - Če so prikazane koordinate, jih prilepite v Google Maps ali OpenStreetMap in preverite dejansko lokacijo.
+   - Primerjajte ali se lokacija ujema z realnostjo.
 
+4. **Analizirajte čas in napravo**
+   - Kdaj je bila slika posneta?
+   - S katero napravo?
+   - So prisotni drugi zanimivi podatki (npr. orientacija, programska oprema itd.)?
 
-## 1️⃣ Uvod: Upravljanje osebnih identitet
+---
 
-Cilj je, da se kot uporabniki naučimo kako:  
-✅ razumeti, kako deluje zgoščevanje (hashing) gesel  
-✅ videti razliko med šibkimi in močnimi gesel  
-✅ praktično uporabiti orodja za »cracking« gesel  
-✅ ozavestiti pomen varnih gesel in zakaj ne uporabljamo slabih  
+## 📝 Analiza in poročilo
 
-### Varnost zgoščenih vrednosti
+Odgovorite na naslednja vprašanja:
 
-Zgoščevanje (hashing) je enosmerni matematični postopek, ki iz poljubno dolgega niza podatkov izračuna fiksno dolgo »prstno odtisno« vrednost (hash). V informacijskih sistemih se uporablja predvsem za shranjevanje preverjanj gesel, saj strežnik ne shranjuje dejanskih gesel, temveč njihove zgoščene vrednosti. Ko uporabnik vnese geslo, sistem izračuna njegov hash in ga primerja s shranjenim.
+1. Kakšna je bila natančna lokacija (koordinate in naslov)?
+2. Kdaj je bila slika posneta?
+3. Katere druge metapodatke si zaznal?
+4. Kaj vas je presenetilo?
+5. Kaj bi priporočali osebi, ki redno objavlja slike na spletu?
 
-Čeprav je zgoščevanje pomemben varnostni mehanizem, pa samo po sebi ne preprečuje napadov. Napadalci lahko s slovarskimi ali brutalnimi napadi ugibajo gesla in izračunavajo njihove hash-e, dokler ne najdejo ujemanja. Zato so ključni dodatni ukrepi, kot so uporaba dolgih in kompleksnih gesel, uporaba »soli« (salt), ki prepreči uporabo vnaprej pripravljenih tabel (rainbow tables), ter počasnejši algoritmi (npr. bcrypt, scrypt ali Argon2), ki otežijo množično računanje hash-ov.
+---
 
-Pomembno je torej razumeti, da varnost gesla ne zagotavlja le zgoščevanje, ampak kombinacija varnostnih praks: močna gesla, dodajanje soli in uporaba primernih algoritmov.
+## 💬 Refleksija
 
+- Ali bi moral vsak pred objavo slike odstraniti EXIF podatke?
+- Kako se lahko zaščitimo pred zlorabo takšnih informacij?
+- Ali si že kdaj objavil sliko, ki je vsebovala takšne metapodatke? Kakšen bi bil tvoj odziv danes?
 
-## 2️⃣ Aktivnost: Uporaba John The Ripper za razbijanje zgoščenih vrednosti
+---
 
-### 🖥️ John The Rippper
+## 🛠️ Dodatno
 
-#### Navodila za namestitev
-
-1️⃣ Namestite John the Ripper (če še ni nameščen):
-
-
+- Poskusite uporabiti orodje `exiftool` lokalno v terminalu:
 ```bash
-sudo apt update
-sudo apt install john
+exiftool slika.jpg
 ```
 
-2️⃣ Preverite, ali imate wordlist:
+---
 
+## 📌 Pomembno
+
+Namen vaje ni kršiti zasebnosti drugih, temveč **ozavestiti, kako hitro in preprosto je razkriti podatke iz slike** ter se posledično **naučiti varne rabe digitalnih vsebin**.
+
+---
+
+## 🧼 Kako odstraniti EXIF metapodatke
+
+Če želimo pred objavo slike odstraniti vse metapodatke, imamo več možnosti:
+
+### 🖥️ Z uporabo `exiftool` (ukazna vrstica)
+
+1. Namestite orodje:
 ```bash
-ls /usr/share/wordlists/rockyou.txt
+sudo apt install libimage-exiftool-perl   # Debian/Ubuntu
+brew install exiftool                     # macOS
 ```
 
-Če ga ni, ga prenesite:
+2. Za odstranitev vseh metapodatkov iz slike (ustvarite kopijo):
 ```bash
-wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+exiftool -all= slika.jpg
 ```
 
-🔐 Priprava podatkov
-
-1️⃣ Ustvarite datoteko gesla.txt z nekaj primeri:
+3. Če želite prepisati obstoječo datoteko:
 ```bash
-Password1
-qwerty123
-My$Strong&Pass2024
-letmein
-Summer2024
+exiftool -all= -overwrite_original slika.jpg
 ```
 
-2️⃣ Pretvorite gesla v zgoščene vrednosti z ukazom openssl:
+---
 
-```bash
-n=1; while read pass; do echo "user$n:$(echo -n "$pass" | md5sum | awk '{print $1}')"; n=$((n+1)); done < gesla.txt > hashes.txt
-```
+### 🌐 Spletna orodja (za testne primere)
 
-Datoteka hashes.txt bo vsebovala MD5 hashe:
+- [https://www.verexif.com/en/](https://www.verexif.com/en/)
+- [https://www.exifremove.com/](https://www.exifremove.com/)
 
-```bash
-2ac9cb7dc02b3c0083eb70898e549b63
-3fc0a7acf087f549ac2b266baf94b8b1
-d09b2f134b49212fb6966b5d337047e5
-0d107d09f5bbe40cade3de5c71e9e9b7
-e90664c0af74160644d29e4d6147969b
-```
+⚠️ Opozorilo: Ne uporabljajte spletnih orodij za občutljive slike.
 
-🚀 Izvedba napada
+---
 
-1️⃣ Zaženite napad z uporabo wordlista:
-```bash
-john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt
-```
+### 🪟 Windows
 
-2️⃣ Prikaz najdenih gesel:
+- Desni klik na sliko → **Properties** → **Details**
+- Klik **Remove Properties and Personal Information**
 
-```bash
-john --show hashes.txt
-```
+---
 
-### 📝 Analiza in poročilo
+### 📱 Mobilni telefoni
 
-- Zabeležite, katera gesla so bila najdena in kako hitro.
-- Katerega močnega gesla program ni našel? Zakaj?
+**Android**:
+- Photo Exif Editor
+- Scrambled Exif (F-Droid)
 
-## 3️⃣ Refleksija in analiza
+**iOS**:
+- Metapho
+- Exif Metadata
 
-- Kako se povečuje ocena varnosti, ko dodajate dolžino?
-- Kako vplivajo posebni znaki na oceno?
-- Kako se ocenjuje “passphrase” v primerjavi s klasičnim geslom?
-- Katero geslo bi priporočili za vsakodnevno uporabo in zakaj?
+
+## Reference
+
+
+1. Pic2Map, *Photo location viewer*, https://www.pic2map.com/
+2. Exif.tools, *Online EXIF data viewer*. https://exif.tools/
+3. Online Exif Viewer, *View EXIF data online*. https://onlineexifviewer.com/
+4. Verexif, *Remove EXIF metadata online*. https://www.verexif.com/en/
+5. Exif Remove, *Remove EXIF metadata from photos*. https://www.exifremove.com/
+6. OpenAI. (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/
