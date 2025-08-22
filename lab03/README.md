@@ -1,167 +1,100 @@
+# OSINT – zbiranje informacij o posameznikih na spletu
 
-# MetaOSINT – Kaj vse razkrije fotografija?
+Obveščevalni viri (OSINT - Open Source INTelligence) so viri informacij, ki so javno dostopni, na primer: spletne strani, družbena omrežja, forumi, iskalniki. Pri tej vaji bomo pogledali kako se lahko tudi povprečen uporabnik interneta dokoplje do osebnih informacij druge osebe, če te niso ustrezno zaščitene.
 
-EXIT (angl. Exchangeable Image File Format) je standard za shranjevanje metapodatkov v slikovnih, zvočnih in drugih večpredstavnostnih datotekah. Velikokorat naprave kot so digitalni fotoaparati in mobilni telefoni shranjujejo tovrstne informacije v fotografije.
+# 🧪 Osnovno o OSINT
 
-Ta vaja je namenjena raziskovanju informacij, ki jih lahko razkrijemo s pomočjo **metapodatkov v fotografijah (EXIF)**. S pomočjo različnih orodij bomo analizirali fotografije in ugotavljali informacije, ki jih lahko s pomočjo MetOSINT razkrijemo, kot so lokacija in čas nastanka fotografije, naprava in druge skrite podatke.
+OSINT predstavlja obveščevalne podatke iz odprtih virov, kot tehnika pa predstavlja zbiranje in analizo informacij, ki so javno dostopne preko odprtih in zakonitih virov.
 
-## 1️⃣ Uvod: Zbiranje informacij o fotografijah
+OSINT temelji na načelu, da je na spletu in drugih javnih medijih mogoče najti ogromno podatkov, ki jih lahko uporabimo za različne namene – od kibernetske varnosti, etičnega hekinga, do novinarstva, raziskav in varnostnih preiskav.
+
+## 1️⃣ Uvod: Zbiranje informacij o posameznikih na spletu
 
 Cilji vaje so:  
-✅ Razumeti pomen metapodatkov v digitalnih fotografijah.  
-✅ Uporabiti OSINT orodja za analizo EXIF podatkov.  
-✅ Oceniti tveganja, povezana z deljenjem slik na spletu.  
-✅ Razviti kritično razmišljanje o zasebnosti in digitalnih sledeh.
+✅ Spoznati tehnike OSINT za zbiranje javno dostopnih informacij o posameznikih.  
+✅ Zavedanje koliko osebnih podatkov je mogoče najti na spletu.  
+✅ Razprava o tem, kako se lahko zaščitimo pred preveliko izpostavljenostjo.  
 
----
+### Orodja za zbiranje informacij o posameznikih
 
-### MetaOSINT
+Sherlock je OSINT orodje, ki išče uporabniška imena na več kot 300 družbenih omrežjih in spletnih platformah. Omogoča vnos uporabniškega imena v obliki niza, orodje pa preveri, ali obstajajo profili s tem imenom na znanih spletnih straneh.
 
-MetaOSINT je tehnika v okviru OSINT (Open Source INTelligence), kjer analiziramo metapodatke datotek, predvsem fotografij z namenom pridobivanja informacij o izvoru, napravi, avtorju ali času nastanka.
+![Sherlock primer](https://github.com/sherlock-project/sherlock/raw/master/docs/images/demo.png)
 
-V kolikor fotografija vsebuje metapodatke lahko iz njih pridobimo npr. GPS podatke in določimo točno lokacijo nastanka fotografije. Metapodatki tudi razkrijejo, ali je bila slika naknadno urejena. Iz metapodatko pa lahko pridobimo tudi podatke o avtorju in napravi.
+[Dokumentacija in GitHub](https://github.com/sherlock-project/sherlock)
 
----
+Maigret gre še korak dlje kot Sherlock, saj poleg iskanja uporabniških imen ponuja podrobno analizo digitalnega odtisa posameznika, vključno z dodatnimi metapodatki in pogosto tudi aktivnostjo uporabniških računov.
 
-### 🔍 Orodja za analizo EXIF metapodatkov
-
-Obstaja veliko orodij za analizo metapodatkov. 
-
-Najbolj pogosto uporabljeno orodje je exiftool (https://exiftool.org/)
-
-[Dokumentacija in GitHub](https://github.com/exiftool/exiftool)
-
-Obstaja pa tudi veliko spletnih orodij: 
--  [https://www.pic2map.com/](https://www.pic2map.com/)
-- [https://exif.tools/](https://exif.tools/)
-- [Online Exif Viewer](https://onlineexifviewer.com/)  
-
----
-
-## 🖼️ Uporaba MetaOSINT na fotografijah
-
-Uporabili bomo testno sliko z vključenimi EXIF podatki, fotografijo bomo vzeli iz zbirke exif-samples, lahko pa tudi uporabite vašo lastno fotografijo, npr iz mobilnega telefona
-
-Najprej torej izberemo fotograifijo:
-- [https://github.com/ianare/exif-samples](https://github.com/ianare/exif-samples)
-- Ali pa sliko z lastnim mobilnim telefonom (poskrbite, da ima vključeno lokacijo).
-
----
+[Dokumentacija in GitHub](https://github.com/soxoj/maigret)
 
 
-## 📝 Navodila za izvedbo
+## 2️⃣ Aktivnost: OSINT - Zbiranje informacij o posamezniku
 
-1. **Izberite fotografijo z EXIF podatki**
-   - Zaželjeno je, da je to fotografija, ki je bila posneta z mobilno napravo z omogočeno lokacijo.
+Izberite javno osebo (npr. znanega novinarja, politika, športnika) ali fiktivno osebo z vnaprej pripravljenimi podatki za vadbo (priporoča se uporaba anonimiziranih podatkov za spoštovanje zasebnosti).
 
-2. **Naložite fotografijo v spletno orodje**
-   - Odprite [https://pic2map.com](https://pic2map.com) ali [https://exif.tools](https://exif.tools)
-   - Naložite svojo testno sliko.
-   - Oglejte si rezultate analize: GPS, datum, čas, naprava, orientacija itd.
+### 🖥️ Sherlock
 
-3. **Analizirajte lokacijo**
-   - Če so prikazane koordinate, jih prilepite v Google Maps ali OpenStreetMap in preverite dejansko lokacijo.
-   - Primerjajte ali se lokacija ujema z realnostjo.
+🔷 1️⃣ Priprava okolja
 
-4. **Analizirajte čas in napravo**
-   - Kdaj je bila slika posneta?
-   - S katero napravo?
-   - So prisotni drugi zanimivi podatki (npr. orientacija, programska oprema itd.)?
+Sherlock je orodje, ki teče v ukazni lupini z nameščenim Pythonom.
 
----
+✅ Če delate v Linux okolju (npr. Kali) je Sherlock je že pogosto nameščen ali ga namestite:
 
-## 📝 Analiza in poročilo
-
-Odgovorite na naslednja vprašanja:
-
-1. Kakšna je bila natančna lokacija (koordinate in naslov)?
-2. Kdaj je bila slika posneta?
-3. Katere druge metapodatke si zaznal?
-4. Kaj vas je presenetilo?
-5. Kaj bi priporočali osebi, ki redno objavlja slike na spletu?
-
----
-
-## 💬 Refleksija
-
-- Ali bi moral vsak pred objavo slike odstraniti EXIF podatke?
-- Kako se lahko zaščitimo pred zlorabo takšnih informacij?
-- Ali si že kdaj objavil sliko, ki je vsebovala takšne metapodatke? Kakšen bi bil tvoj odziv danes?
-
----
-
-## 🛠️ Dodatno
-
-- Poskusite uporabiti orodje `exiftool` lokalno v terminalu:
 ```bash
-exiftool slika.jpg
+git clone https://github.com/sherlock-project/sherlock.git
+cd sherlock
+pip3 install -r requirements.txt
 ```
 
----
+Zaženete Sherlock:
 
-## 📌 Pomembno
-
-Namen vaje ni kršiti zasebnosti drugih, temveč **ozavestiti, kako hitro in preprosto je razkriti podatke iz slike** ter se posledično **naučiti varne rabe digitalnih vsebin**.
-
----
-
-## 🧼 Kako odstraniti EXIF metapodatke
-
-Če želimo pred objavo slike odstraniti vse metapodatke, imamo več možnosti:
-
-### 🖥️ Z uporabo `exiftool` (ukazna vrstica)
-
-1. Namestite orodje:
 ```bash
-sudo apt install libimage-exiftool-perl   # Debian/Ubuntu
-brew install exiftool                     # macOS
+python3 sherlock <username>
 ```
 
-2. Za odstranitev vseh metapodatkov iz slike (ustvarite kopijo):
+### 🖥️ Maigret
+
+🔷 2️⃣ Alternativa oz. dopolnitev Sherlocku
+
+Maigret podobno kot SHerlock teče v ukazni lupini z nameščenim Pythonom. Podpira tudi spletni vmesnik in razne oblike izhodov in poročil.
+
+✅ Namestitev Maigret (če še ni nameščen):
 ```bash
-exiftool -all= slika.jpg
+pip install maigret
+```
+ali iz izvorne kode:
+
+```bash
+git clone https://github.com/soxoj/maigret.git
+cd maigret
+pip install -r requirements.txt
 ```
 
-3. Če želite prepisati obstoječo datoteko:
+Zagon Maigret: 
+
 ```bash
-exiftool -all= -overwrite_original slika.jpg
+maigret <username>
 ```
 
----
+🔷 Primerjava orodij
+Uporabite oba programa za isto uporabniško ime ter rimerjajte rezultate: katero orodje je našlo več profilov? Katero je dalo bolj pregledne podatke?
 
-### 🌐 Spletna orodja (za testne primere)
+Razmislite: ali sta se našla profila na družbenih omrežjih, kjer tega niste pričakovali?
 
-- [https://www.verexif.com/en/](https://www.verexif.com/en/)
-- [https://www.exifremove.com/](https://www.exifremove.com/)
+### 📝 Analiza in poročilo
 
-⚠️ Opozorilo: Ne uporabljajte spletnih orodij za občutljive slike.
+- Primerjajte rezultate Sherlocka in Maigreta. Katere razlike ste opazili? 
+- Ali ste našli kakšno občutljivo informacijo (npr. e‑poštni naslov, zasebne slike, telefonsko številko)? Kako bi jo lahko oseba zaščitila pred tem, da je javno dostopna?
 
----
+## 3️⃣ Refleksija in analiza
 
-### 🪟 Windows
-
-- Desni klik na sliko → **Properties** → **Details**
-- Klik **Remove Properties and Personal Information**
-
----
-
-### 📱 Mobilni telefoni
-
-**Android**:
-- Photo Exif Editor
-- Scrambled Exif (F-Droid)
-
-**iOS**:
-- Metapho
-- Exif Metadata
-
+- Katere informacije so bile najlažje najdene? Katere je bilo najtežje najti?
+- Kako bi vi sami prilagodili svoje vedenje na spletu, potem ko ste izvedli to vajo?
+- Ali menite, da je uporaba OSINT orodij etično sporna? V katerih primerih je upravičena?
 
 ## Reference
 
-
-1. Pic2Map, *Photo location viewer*, https://www.pic2map.com/
-2. Exif.tools, *Online EXIF data viewer*. https://exif.tools/
-3. Online Exif Viewer, *View EXIF data online*. https://onlineexifviewer.com/
-4. Verexif, *Remove EXIF metadata online*. https://www.verexif.com/en/
-5. Exif Remove, *Remove EXIF metadata from photos*. https://www.exifremove.com/
-6. OpenAI. (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/
+1. Sherlock Project, *Sherlock: Find usernames across social networks*, GitHub, https://github.com/sherlock-project/sherlock 
+2. Maigret,  *Maigret*, GitHub, https://github.com/soxoj/maigret
+3. OSINT Framework, *OSINT tools and resources collection*,https://osintframework.com/  
+4. OpenAI, (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/

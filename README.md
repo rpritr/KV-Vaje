@@ -6,18 +6,20 @@ Repozitorij vsebuje vaje za predmet **Kibernetska varnost** (MAG, RST), ki zajem
 
 | Mapa   | Vsebina vaje |
 |--------|---------------|
-| `lab01` | Varnost posameznikov v kibernetskem prostoru |
-| `lab02` | OSINT – zbiranje informacij o posameznikih na spletu |
-| `lab03` | MetaOSINT – Kaj vse razkrije fotografija? |
-| `lab04` | Socialni inženiring in obrambe pred njim |
-| `lab05` | Uvod v Kali Linux |
+| `lab00` | Uvod v Linux: osnove dela v ukazni lupini |
+| `lab01` | Uvod v Kali Linux |
+| `lab02` | Varnost posameznikov v kibernetskem prostoru |
+| `lab03` | OSINT – zbiranje informacij o posameznikih na spletu |
+| `lab04` | MetaOSINT – Kaj vse razkrije fotografija? |
+| `lab05` | Socialni inženiring in obrambe pred njim |
 | `lab06` | Testiranje varnosti gesel z razbijanjem zgoščenih vrednosti |
 | `lab07` | Prepoznavanje in preprečevanje phishing napadov |
 | `lab08` | Uporaba varne komunikacije |
 | `lab09` | Testiranje SSH varnosti z Nmap in Hydra |
 | `lab10` | CTF vaja na realnem primeru: HackyCorp |
-| `lab11` | Priprava varnostne politike |
-
+| `lab11` | Linux CTF |
+| `lab12` | Priprava varnostne politike |
+| `lab13` | Projektna naloga: Sistemski ali zunanji varnostni pregled |
 
 | `lab07` | Varnost v oblakih in uporaba večfaktorske avtentikacije |
 

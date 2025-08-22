@@ -1,100 +1,79 @@
-# OSINT – zbiranje informacij o posameznikih na spletu
+# Varnost posameznikov v kibernetskem prostoru
 
-Obveščevalni viri (OSINT - Open Source INTelligence) so viri informacij, ki so javno dostopni, na primer: spletne strani, družbena omrežja, forumi, iskalniki. Pri tej vaji bomo pogledali kako se lahko tudi povprečen uporabnik interneta dokoplje do osebnih informacij druge osebe, če te niso ustrezno zaščitene.
+Kibernetski prostor uporabljamo vsakodnevno. Primer uporabe kibernetskega prostora je komunikacija, nakupovanje, bančništvo, pa tudi delo in zabava. Posamezniki smo uporabniki kibernetskega prostora, hkrati pa tudi tarče in se pogosto ne zavedamo vseh nevarnosti in posledic svojih dejanj.
 
-# 🧪 Osnovno o OSINT
+Cilj vaj pri predmetu Varnost posameznikov v kibernetskem prostoru je študentom približati ključne pojme kibernetske varnosti z vidika posameznika, razviti občutek za tveganja in ranljivosti ter jih opremiti z osnovnimi znanji za varnejšo uporabo sodobnih tehnologij.
 
-OSINT predstavlja obveščevalne podatke iz odprtih virov, kot tehnika pa predstavlja zbiranje in analizo informacij, ki so javno dostopne preko odprtih in zakonitih virov.
+# 🧪 Spoznajmo kibernetski prostor
 
-OSINT temelji na načelu, da je na spletu in drugih javnih medijih mogoče najti ogromno podatkov, ki jih lahko uporabimo za različne namene – od kibernetske varnosti, etičnega hekinga, do novinarstva, raziskav in varnostnih preiskav.
+Prva vaja je namenjena uvodu v kibernetsko varnost ter spoznavanju osnovnih pojmov in izzivov:
 
-## 1️⃣ Uvod: Zbiranje informacij o posameznikih na spletu
+- Kdo ali kaj je posameznik v kibernetskem prostoru?
+- Kaj pomeni pojem kibernetski prostor in kako ga zaznavamo?
+- Kaj razumemo pod pojmom kibernetska varnost?
 
-Cilji vaje so:  
-✅ Spoznati tehnike OSINT za zbiranje javno dostopnih informacij o posameznikih.  
-✅ Zavedanje koliko osebnih podatkov je mogoče najti na spletu.  
-✅ Razprava o tem, kako se lahko zaščitimo pred preveliko izpostavljenostjo.  
+## 1️⃣ Uvod: Analiza osebne izpostavljenosti v kibernetskem prostoru
 
-### Orodja za zbiranje informacij o posameznikih
+Cilji vaje:  
+✅ Spoznati osnovne pojme: posameznik, kibernetski prostor, kibernetska varnost, zasebnost.  
+✅ Prepoznati osebne podatke in kako so dostopni v spletnem okolju.  
+✅ Razumeti, kako sodobne tehnologije vplivajo na varnost in zasebnost posameznika.  
 
-Sherlock je OSINT orodje, ki išče uporabniška imena na več kot 300 družbenih omrežjih in spletnih platformah. Omogoča vnos uporabniškega imena v obliki niza, orodje pa preveri, ali obstajajo profili s tem imenom na znanih spletnih straneh.
+### Varnost in zasebnost
 
-![Sherlock primer](https://github.com/sherlock-project/sherlock/raw/master/docs/images/demo.png)
+Posameznik v kibernetskem prostoru je vsak uporabnik tehnologij in naprav, ki so povezane v omrežje ter uporabljajo storitve interneta.
 
-[Dokumentacija in GitHub](https://github.com/sherlock-project/sherlock)
+Varnost:
+Varnost (kibernetska varnost) obsega varovanje IKT sistemov, omrežij in podatkov pred nepooblaščenim dostopom, napadi, okvarami ali zlorabo. Namen je zagotavljanje zaupnosti, celovitosti in dostopnosti podatkov ter storitev.
+Primer: preprečiti vdor v uporabnikov e-poštni račun.
 
-Maigret gre še korak dlje kot Sherlock, saj poleg iskanja uporabniških imen ponuja podrobno analizo digitalnega odtisa posameznika, vključno z dodatnimi metapodatki in pogosto tudi aktivnostjo uporabniških računov.
+Zasebnost:
+Zasebnost se dotika pravice osebe, da ima nadzor nad svojimi osebnimi podatki ter načinom, kako se ti zbirajo, uporabljajo, razkrivajo ali shranjujejo. Gre za to, koliko podatkov o sebi želi oseba odpreti in komu.
+Primer: pravica, da spletna platforma brez soglasja ne deli uporabnikovih podatkov z oglaševalci.
 
-[Dokumentacija in GitHub](https://github.com/soxoj/maigret)
+## 2️⃣ Aktivnost: Analiza osebne izpostavljenosti
+
+V brskalniku odprite način incognito/private in poiščite informacije o sebi (npr. preko iskalnikov in storitev za preverjanje izpostavljenosti):
+- Poiščite svoje ime in priimek v Googlu.
+- Preverite morebitne javne profile (Facebook, LinkedIn, Instagram, forumi).
+- Uporabite orodja za preverjanje izpostavljenosti (HaveIBeenPwned, OSINTLeak)
+- Orodja: PimEyes, haveibeenpwned, OSINTLeak
+
+### Google dorking/hacking
+
+Google Dorking (znan tudi kot Google Hacking) je metoda, ki izkorišča napredne iskalne operaterje v Googlu (ali drugih iskalnikih), da pridobimo podatke, ki niso mišljeni za javnost, a so še vedno dosegljivi na spletu.
+
+Gre za izkoriščanje napačno nastavljene spletne strani, strežnikov ali aplikacij, kjer so datoteke, dokumenti ali celo gesla dostopni javnosti, a skriti pred navadnimi uporabniki.
+
+Google Dorking sicer ni nezakonit, dokler ne posegamo v zaščitene sisteme. Vendar pa najdenih informacij ne smemo zlorabiti, shranjevati brez dovoljenja ali javno razkrivati.
 
 
-## 2️⃣ Aktivnost: OSINT - Zbiranje informacij o posamezniku
+### 📘 Primeri Google Dork iskalnih poizvedb
 
-Izberite javno osebo (npr. znanega novinarja, politika, športnika) ali fiktivno osebo z vnaprej pripravljenimi podatki za vadbo (priporoča se uporaba anonimiziranih podatkov za spoštovanje zasebnosti).
+| Iskalna poizvedba                       | Kaj najde?                                        |
+|----------------------------------------|---------------------------------------------------|
+| `filetype:pdf site:gov.si`             | PDF dokumenti na slovenskih vladnih straneh       |
+| `intitle:"index of" passwords`         | Mape z imenom "index of" in datotekami z gesli    |
+| `inurl:admin login`                    | Strani z možnostjo prijave v administracijo       |
+| `site:pastebin.com password`           | Objave z gesli na Pastebin                        |
+| `"confidential" filetype:pdf`          | Dokumenti z oznako "confidential" v PDF obliki    |
+| `ext:sql intext:"password"`            | Javne SQL datoteke, ki vsebujejo gesla            |
+| `intitle:"webcamXP 5"`                 | Nezaščiteni vmesniki IP kamer                     |
+| `inurl:/phpinfo.php`                   | Javne PHP konfiguracijske datoteke                |
+| `filetype:env intext:DB_PASSWORD`      | Javne `.env` datoteke z gesli do baz              |
+| `site:*.* inurl:/config.json`          | Javne konfiguracijske datoteke aplikacij          |
 
-### 🖥️ Sherlock
-
-🔷 1️⃣ Priprava okolja
-
-Sherlock je orodje, ki teče v ukazni lupini z nameščenim Pythonom.
-
-✅ Če delate v Linux okolju (npr. Kali) je Sherlock je že pogosto nameščen ali ga namestite:
-
-```bash
-git clone https://github.com/sherlock-project/sherlock.git
-cd sherlock
-pip3 install -r requirements.txt
-```
-
-Zaženete Sherlock:
-
-```bash
-python3 sherlock <username>
-```
-
-### 🖥️ Maigret
-
-🔷 2️⃣ Alternativa oz. dopolnitev Sherlocku
-
-Maigret podobno kot SHerlock teče v ukazni lupini z nameščenim Pythonom. Podpira tudi spletni vmesnik in razne oblike izhodov in poročil.
-
-✅ Namestitev Maigret (če še ni nameščen):
-```bash
-pip install maigret
-```
-ali iz izvorne kode:
-
-```bash
-git clone https://github.com/soxoj/maigret.git
-cd maigret
-pip install -r requirements.txt
-```
-
-Zagon Maigret: 
-
-```bash
-maigret <username>
-```
-
-🔷 Primerjava orodij
-Uporabite oba programa za isto uporabniško ime ter rimerjajte rezultate: katero orodje je našlo več profilov? Katero je dalo bolj pregledne podatke?
-
-Razmislite: ali sta se našla profila na družbenih omrežjih, kjer tega niste pričakovali?
-
-### 📝 Analiza in poročilo
-
-- Primerjajte rezultate Sherlocka in Maigreta. Katere razlike ste opazili? 
-- Ali ste našli kakšno občutljivo informacijo (npr. e‑poštni naslov, zasebne slike, telefonsko številko)? Kako bi jo lahko oseba zaščitila pred tem, da je javno dostopna?
 
 ## 3️⃣ Refleksija in analiza
 
-- Katere informacije so bile najlažje najdene? Katere je bilo najtežje najti?
-- Kako bi vi sami prilagodili svoje vedenje na spletu, potem ko ste izvedli to vajo?
-- Ali menite, da je uporaba OSINT orodij etično sporna? V katerih primerih je upravičena?
+- Razmislite in zapišite katere podatke ste našli.
+- Kakšno potencialno tveganje predstavljajo?
+- Zapišite primer črnega scenarija kako bi nekomu ti podatki lahko prišli prav na primeru osebne izpostavljenosti.
+- Kako bi ocenili svojo osebno varnost/zasebnost?
 
 ## Reference
 
-1. Sherlock Project, *Sherlock: Find usernames across social networks*, GitHub, https://github.com/sherlock-project/sherlock 
-2. Maigret,  *Maigret*, GitHub, https://github.com/soxoj/maigret
+1. PimEyes., *Face recognition search engine*, https://pimeyes.com/  
+2. Have I Been Pwned, *Data breach search and notification service*, https://haveibeenpwned.com/  
 3. OSINT Framework, *OSINT tools and resources collection*,https://osintframework.com/  
 4. OpenAI, (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/
