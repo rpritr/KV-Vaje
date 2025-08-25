@@ -1,15 +1,20 @@
 # 🐧 Uvod v Linux: osnove dela v ukazni lupini
 
-## 🎯 Cilj
-Naučiti se osnovnega dela z ukazno vrstico v Linux okolju. Po tej vaji bomo spoznali kako:  
-- krmariti po imenikih,
-- pregledovati vsebine,
-- ustvarjati in brisati datoteke,
-- preveriti velikost in pravice.
+V prvem delu si bomo podrobneje pogledali (in ponovili) delo z ukazno vrstico v operacijskem sistemu Linux OS.
 
-✅ se povežemo na Linux strežnik preko ssh  
-✅ pregledamo imenike, ustvarimo imenike in datoteke  
+Linux je odprtokodni operacijski sistem podoben Unixu. Unix je bil razvit v 70-ih letih prejšnjega stoletja v Bell Labs. Takrat je veljal za prvi večuporabniški večopravilni operacijski sistem. Iz njega je na univerzi v Berkley izšla posebna različica poznana kot "Berkley Software Distribution" ali BSD. Danes mu jee zelo podoben tudi MacOS, ki izhaja iz družine BSD, konkretno FreeBSD. 
+
+Linux sicer označuje ime jedra operacijskega sistema. Na voljo pa je veliko distribucij, ki temeljijo na Linux jedru: Debian, Ubuntu, Fedora, CentOS, Kali Linux, Arch Linux, ...
+
+
+
+## 🎯 Cilj
+Naučiti se osnovnega dela z ukazno vrstico v Linux okolju. 
+
+Pri tej vaji bomo spoznali kako:  
 ✅ izvajamo osnovne ukaze v Linuxu  
+✅ pregledamo imenike, ustvarimo imenike in datoteke  
+✅ se povežemo na Linux strežnik preko ssh  
 
 ---
 
@@ -17,13 +22,15 @@ Naučiti se osnovnega dela z ukazno vrstico v Linux okolju. Po tej vaji bomo spo
 
 Za to vajo bomo uporabili [GitHub Codespaces](https://github.com/features/codespaces)
 
-Zaželjeno je, da si za potrebe vaj do naslednjič pripravite svoje okolje bodisi:
+GitHub Codespaces je razvojno okolje, ki gostuje v oblaku. Namenjeno je sicer razvoju projektov, kjer se povežemo z GitHub repozitorijem, kar omogoča, da razvijamo v sklopu spletnega brskalnika, dostopamo pa lahko tudi do virtualnega okolja.
+
+Zaželjeno je, da si za potrebe vaj do naslednjič pripravite svoje virtualno okolje bodisi:
 - znotraj virtualega okolja (VMWare, VirtualBox ipd.)
 - Windows Subsystem for Linux (WSL)
 - Microsoft Azure ali druga oblačna storitev
 - obstoječe okolje v kolikor uporabljate Linux OS/Max OS X/BSD ipd. 
 
-Priporočeno je, da si namestite distribucijo Kali Linux, ki že vključuje vsa orodja, ki jih bomo uporabljali.
+Priporočeno je, da si namestite distribucijo Kali Linux, ki že vključuje vsa orodja, ki jih bomo uporabljali v sklopu vaj.
 
 ---
 
@@ -38,8 +45,8 @@ Privzeto Github Codespaces ne omogoča dostopa preko SSH, zato bomo uporabili tr
 Najprej ustvarimo uporabnika s katerim bomo delali, da ne uporabljamo prizetega uporabnika.
 
 ```bash
-whoami # preverimo trenutnega uporabnika
-sudo adduser user # user je vaše željeno uporabniško ime, čarovnik nas bo vprašal po geslu in podatkih uporabnika, kar potrdimo. Pozor: geslo se ne vidi, ko se vpisuje.
+whoami              # preverimo trenutnega uporabnika
+sudo adduser user   # user je vaše željeno uporabniško ime, čarovnik nas bo vprašal po geslu in podatkih uporabnika, kar potrdimo. Pozor: geslo se ne vidi, ko se vpisuje.
 sudo usermod -aG sudo user
 sudo visudo
 ```
@@ -51,9 +58,9 @@ user ALL=(ALL:ALL) ALL
 
 Sedaj zaženemo SSH storitev
 ```bash
-sudo service ssh start # zagon storitve ssh
-sudo apt update # posodobimo seznam paketov
-sudo apt install tmate # namestimo paket tmate
+sudo service ssh start      # zagon storitve ssh
+sudo apt update             # posodobimo seznam paketov
+sudo apt install tmate      # namestimo paket tmate
 tmate # zaženemo tmate
 ```
 
@@ -103,8 +110,8 @@ rm -r novaMapa         # izbriše imenik z vsebino
 
 ### 3️⃣ Premikanje in kopiranje
 ```bash
-mv dat.txt druga.txt      # preimenuje datoteko
-cp file1.txt file2.txt    # kopira datoteko
+mv dat.txt druga.txt            # preimenuje datoteko
+cp file1.txt file2.txt          # kopira datoteko
 mv file.txt /pot/do/drugamape/  # premik
 ```
 

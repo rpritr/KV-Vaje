@@ -1,6 +1,6 @@
 # Uvod v Kali Linux
 
-Na tej vaji boste spoznali okolje **Kali Linux**, ki je standardno orodje za testiranje varnosti in etični hacking. Seznanili se boste z namenom uporabe Kali Linuxa, njegovimi glavnimi orodji in osnovnimi koncepti, ki jih mora poznati vsak varnostni strokovnjak.
+Na tej vaji boste spoznali distribucijo **Kali Linux**, ki je standardna distribucija Linux za testiranje varnosti in etični hacking. Seznanili se boste z namenom uporabe Kali Linuxa, njegovimi glavnimi orodji in osnovnimi koncepti, ki jih mora poznati vsak varnostni strokovnjak.
 
 # 🧪 Uvod v Kali Linux
 
@@ -11,7 +11,7 @@ Poznavanje okolja Kali Linux je pomembno, saj omogoča izvajanje simulacij napad
 
 ## 1️⃣ Uvod
 
-Cilj je, da se kot uporabniki naučimo kako:  
+Cilj vaje je, da se kot uporabniki naučimo kako:  
 ✅ razumeti namen in vlogo Kali Linuxa v kibernetski varnosti  
 ✅ se znajti v osnovnem grafičnem in ukaznem okolju Kali Linuxa  
 ✅ najti in zagnati nekaj ključnih orodij  
@@ -19,31 +19,44 @@ Cilj je, da se kot uporabniki naučimo kako:
 
 ---
 
-## 2️⃣ Aktivnost
+## 2️⃣ Delo s Kali Linux
 
 ### 🖥️ Navodila
 
-Študenti boste izvedli naslednje korake in dokumentirali rezultate:
+V nadaljevanju si bomo pogledali kako namestimo in zaženemo Kali Linux. Pogledali si bomo tudi nekaj osnovnih ukazov.
 
 ---
 
-#### 1️⃣ Kaj je Kali Linux?
+#### 1️⃣ Namestitev Kali Linux
 
 Osnovne informacije o Kali Linuxu najdemo na: [https://www.kali.org](https://www.kali.org)
 
-Kali Linux je odprtokodna distribucija Linuxa, ki temelji na Debianu in je namenjena različnim nalogam informacijske varnosti, kot so testiranje vdora, varnostne raziskave, računalniška forenzika in obratni inženiring.
+Navodila za namestitev Kali Linux so na voljo na naslovu: [https://www.kali.org/docs/installation/](https://www.kali.org/docs/installation/)
 
+Slike za prenos Kali Linux najdete na: [https://www.kali.org/get-kali/#kali-platforms](https://www.kali.org/get-kali/#kali-platforms)
+
+Priporočam uporabo znotraj virtualnega okolja VMWare ali VirtualBox. 
+
+V sklopu Windows lahko Kali Linux namestite v okolju WSL: [https://www.kali.org/get-kali/#kali-wsl](https://www.kali.org/get-kali/#kali-wsl)
+
+Na Mac OS X predlagam uporabo WMware Fusion [https://www.kali.org/docs/virtualization/install-vmware-silicon-host/](https://www.kali.org/docs/virtualization/install-vmware-silicon-host/)
 
 ---
 
 #### 2️⃣ Zagon okolja Kali Linux
+
+Kali Linux uporablja grafično okolje Xfce, v sklopu Linux OS so na voljo tudi druga grafična okolja: GNOME, KDE, Cinnamon, Pantheon, ...
+
+Raziščite grafično okolje Kali Linux:
 - Zaženite virtualno okolje z **Kali Linuxom**.
 - Raziščite grafično okolje (meniji, sistemske informacije).
 - Poiščite meni z varnostnimi orodji in preglejte 5 orodij, ki jih najdete.
+- poiščite nastavitve operacijskega sistema
+- razliščite datotečni sistem
 
 ---
 
-#### 3️⃣ Preverjanje sistema in osnovni ukazi
+#### 3️⃣ Osnovni ukazi v ukazni vrstici
 Odprite **terminal** in izvedite naslednje ukaze ter zapišite rezultate.
 
 | Ukaz                     | Pomen |
@@ -53,6 +66,8 @@ Odprite **terminal** in izvedite naslednje ukaze ter zapišite rezultate.
 | `uname -a`               | Pokaže podatke o jedru |
 | `df -h`                  | Prikaže zasedenost diska |
 | `ip a`                   | Pokaže mrežne nastavitve |
+| `wget url`                   | Prenos datotek iz URL naslova |
+| `sudo apt install package_name`                   | Namestitev paketov s pomočjo APT |
 
 Primer:
 ```bash
@@ -61,29 +76,59 @@ hostnamectl
 uname -a
 df -h
 ip a
-```
-
-4️⃣ Preverjanje orodij v terminalu
-
-```bash
+wget https://gist.githubusercontent.com/EdwardRayl/3436572afde8ce9e3faf5b7b95356a49/raw/6b25895fce480713560829dec31ac8220ffe5272/gists.txt
+sudo apt install 7zip
 which nmap
 which john
-which hydra
-which sqlmap
-which nikto
+cd /
+ls -la
 ```
 
-### 📝 Analiza in poročilo
+#### 3️⃣ Uporaba orodij v Kali Linux
 
-Oddajte poročilo z naslednjimi vsebinami:
-- Kratek opis Kali Linuxa in njegovih področij uporabe
-- Izpisi zgoraj navedenih ukazov
-- Seznam 5 orodij iz menija in 5 orodij iz terminala
-- Komentar: kaj vas je presenetilo pri okolju Kali Linux?
+V nadaljevanju si bomo pogledali in predstavili nekaj osnovnih orodij, ki so na voljo znotraj Kali Linux. 
 
+NMAP in ZenMAP sta uporabni orodji za fazo skeniranja v Kali Linuxu. NMAP in ZenMAP sta praktično isti orodji, vendar NMAP uporablja ukazno vrstico, medtem ko ima ZenMAP grafični uporabniški vmesnik.
+
+Nmap omogoča skeniranje po IP naslovih. Omogoča tudi prepoznavanje operacijskega sistema IP naprave z uporabo zastavice -O. 
+```bash
+nmap -O 192.168.1.101				# skeniranje po operacijskem sistemu
+nmap -p 1-65535 -T4  192.168.1.1	# skeniranje po odprtih vratih TCP in UDP
+nmap -sS -T4 192.168.1.11			# stealth-scan z uporabo SYN/ACK.
+```
+
+Searchsplit je iskalnik po zaznanih ranljivostih
+
+```bash
+searchsploit wordpress ftp 			# iskanje po zaznanih ranljivostih v Wordpress FTP razširitvah
+```
+
+Dnsenum je skripta za iskanje DNS podatkov domene in odkrivanje IP naslovov. Glavni namen Dnsenuma je zbrati čim več informacij o domeni. 
+
+```bash
+dnsenum google.com					# zagon DNS poizvedbe
+```
+
+Orodje LBD (Load Balancing Detector) omogoča zaznavo ali določena domena uporablja Load Balancer ali HTTP. 
+
+```bash
+lbd google.com						# preverjanje LB
+```
+
+Name-That-Hash je orodje, ki omogoča identifikacijo pridobljene zgoščene vrednosti niza. 
+
+```bash
+nth
+sudo apt install name-that-hash		# namestitev nth
+nth -t ef487f75307f96954d3bb132e5f4b035
+```
 ⸻
 
 ## 3️⃣ Refleksija in analiza
-	•	Zakaj je pomembno izvajati preizkuse varnosti v varnem okolju?
-	•	Katere funkcionalnosti Kali Linuxa so vas najbolj pritegnile?
-	•	Kako bi v prihodnje uporabili to znanje v praksi?
+	•	Zakaj uporabljamo Kali Linux? Kaj je prednost Kali Linux v primerjavi z ostalimi Linux distribucijami?
+	•	Katere funkcionalnosti in orodja Kali Linuxa so vas najbolj pritegnile?
+
+## Reference
+
+1. Kali Linux., *Penetration Testing Distribution*, https://www.kali.org/
+2. OpenAI, (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/

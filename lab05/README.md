@@ -3,7 +3,7 @@
 Socialni inženiring izkorišča človeško psihologijo, ne tehnične ranljivosti.
 Napadalci ciljajo na čustva, navade in nepozornost posameznikov, da pridobijo dostop do informacij ali sistemov brez uporabe zapletenih tehnik vdiranja.
 
-# 🧪 Vaja 1: Spoznajmo kibernetski prostor
+# 🧪 Spoznajmo kibernetski prostor
 
 Pri prvi vaji smo spoznali, koliko informacij posamezniki delijo v kibernetskem prostoru — zdaj poglejmo, kako se te informacije lahko zlorabijo.
 
@@ -78,7 +78,7 @@ USB ključek z napisom »Zaupno« ali »Plačilni podatki«, puščen na parkiri
 ## 2️⃣ Aktivnost: Analiza phising primerov
 
 ### E-poštno sporočilo za prevzem paketa
-
+```bash
 From: dostava@postapaket.xyz
 Subject: Vaš paket čaka na dostavo!
 
@@ -92,9 +92,9 @@ Za pomoč se obrnite na našo podporo.
 
 Hvala,
 Ekipa Pošte
-
+```
 ### E-poštno sporočilo glede deaktivacije računa
-
+```bash
 From: varnost@bankaa-si.com
 Subject: Vaš račun bo deaktiviran!
 
@@ -107,9 +107,10 @@ Kliknite tukaj za potrditev: http://bankaa-si-login.net
 Hvala za sodelovanje.
 
 Varnostna služba banke
-
+```
 ### E-poštno sporočilo glede nagrade
 
+```bash
 From: nagrade@promocije.win
 Subject: Čestitamo! Osvojili ste nagrado!
 
@@ -122,10 +123,10 @@ Kliknite tukaj: http://promo-claim-now.biz
 Veselimo se vaše udeležbe!
 
 Promocijska ekipa
+```
+## 3️⃣ Preverjanje phishing sporočil
 
-## 3️⃣ Aktivnost: preverjanje phishing sporočil
-
-Vsako e‑sporočilo ima glavo sporočila (header), ki vsebuje tehnične podatke o pošiljatelju, naslovniku, času, IP‑jih in strežnikih. Header je pomemben za preiskovanje sumljivih sporočil.
+Vsako e‑sporočilo ima glavo sporočila (header), ki vsebuje tehnične podatke o pošiljatelju, naslovniku, času, IP‑jih in strežnikih. Header je pomemben za preiskovanje sumljivih sporočil. 
 
 Primer sumljivih znakov:
 - Različni “From” in “Return‑Path”
@@ -133,17 +134,26 @@ Primer sumljivih znakov:
 - Neujemajoča domena pošiljatelja
 - SPF/DKIM/DMARC napake
 
-Napišite kratko poročilo:
+V svojem e-poštnem predalu poiščite mapo SPAM in najdite sumljivo sporočilo, lahko preverite tudi kakšno sporočilo v INBOX v kolikor za katerega sumite, da bi lahko predstavljalo sumljivo sporočilo. 
+
+Preverite in zapišite:
 - Kakšen je dejanski IP pošiljatelja?
 - Ali se domena pošiljatelja ujema z naslovom v “From”?
 - Iz katere države približno izvira sporočilo?
 - So v headerju vidni znaki preusmeritev preko več strežnikov?
 - So prisotne napake SPF/DKIM/DMARC?
 
-V svojem e-poštnem odjemalcu poskusite v mapi SPAM poiskati kakšno sporočilo za katerega sumite, da bi lahko bilo phishing sporočilo ter ga analizirajte. Zapišite rezultate. 
+
+## 4️⃣ Ustvarite lastno phishing sporočilo (v izobraževalne namene)
+
+Pripravijte primer lastnega phishing napada (besedilo e-maila ali SMS sporočila), z določenim ciljem (npr. kraja gesla, napeljava na prenos datoteke, …).
+
+Izberite kateri tip napada boste uporabili (phishing, vishing, pretexting…)
+Določite čustveni in psihološke vzvode za dosego cilja in zapišite kako bi izgledal “realističen” email z vizualnimi elementi (npr. logotipi, stil, slovnične napake)
+
 
 ## 4️⃣ Refleksija in analiza
 
-- Kako hitro opazite sumljivost IP‑ja/domen?
-- Bi to sporočilo prepoznali kot nevarno brez headerja?
+- Kako hitro opazite sumljivost e-poštnega sporočila?
+- Bi z zagotovostjo lahko vsako sporočilo prepoznali kot nevarno brez headerja?
 - Kaj bi svetovali nekomu, ki je nov uporabnik elektronske pošte glede nevarnosti, ki nanj prežijo iz vidika socialnega inženiringa?

@@ -1,12 +1,12 @@
 # Varnost posameznikov v kibernetskem prostoru
 
-Kibernetski prostor uporabljamo vsakodnevno. Primer uporabe kibernetskega prostora je komunikacija, nakupovanje, bančništvo, pa tudi delo in zabava. Posamezniki smo uporabniki kibernetskega prostora, hkrati pa tudi tarče in se pogosto ne zavedamo vseh nevarnosti in posledic svojih dejanj.
+Kibernetski prostor uporabljamo vsakodnevno. Primer uporabe kibernetskega prostora predstavljajo komunikacija, nakupovanje, bančništvo, pa tudi delo in zabava. Posamezniki smo uporabniki kibernetskega prostora, hkrati pa tudi tarče in se pogosto ne zavedamo vseh nevarnosti in posledic svojih dejanj.
 
-Cilj vaj pri predmetu Varnost posameznikov v kibernetskem prostoru je študentom približati ključne pojme kibernetske varnosti z vidika posameznika, razviti občutek za tveganja in ranljivosti ter jih opremiti z osnovnimi znanji za varnejšo uporabo sodobnih tehnologij.
+Pri tej vaji želimo izpostaviti ključne pojme kibernetske varnosti z vidika posameznika, razviti občutek za tveganja in ranljivosti ter se opremiti z osnovnimi znanji za varnejšo uporabo sodobnih tehnologij.
 
 # 🧪 Spoznajmo kibernetski prostor
 
-Prva vaja je namenjena uvodu v kibernetsko varnost ter spoznavanju osnovnih pojmov in izzivov:
+Pri tej vaji bomo spoznali koncept kibernetske varnosti ter  osnovne pojme in izzive:
 
 - Kdo ali kaj je posameznik v kibernetskem prostoru?
 - Kaj pomeni pojem kibernetski prostor in kako ga zaznavamo?
@@ -66,7 +66,7 @@ Google Dorking sicer ni nezakonit, dokler ne posegamo v zaščitene sisteme. Ven
 
 ## 3️⃣ Refleksija in analiza
 
-- Razmislite in zapišite katere podatke ste našli.
+- Razmislite in zabeležite katere podatke ste našli.
 - Kakšno potencialno tveganje predstavljajo?
 - Zapišite primer črnega scenarija kako bi nekomu ti podatki lahko prišli prav na primeru osebne izpostavljenosti.
 - Kako bi ocenili svojo osebno varnost/zasebnost?

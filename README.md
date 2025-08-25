@@ -20,10 +20,3 @@ Repozitorij vsebuje vaje za predmet **Kibernetska varnost** (MAG, RST), ki zajem
 | `lab11` | Linux CTF |
 | `lab12` | Priprava varnostne politike |
 | `lab13` | Projektna naloga: Sistemski ali zunanji varnostni pregled |
-
-| `lab07` | Varnost v oblakih in uporaba večfaktorske avtentikacije |
-
-| `lab09` | Preizkus varnosti spletnih aplikacij (osnove) |
-| `lab10` | Incident response — ukrepanje ob napadu |
-| `lab11` | Pravne in etične dileme v kibernetski varnosti |
-| `lab13` | Zaključna vaja in predstavitev rezultatov |
