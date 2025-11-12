@@ -20,3 +20,12 @@ Repozitorij vsebuje vaje za predmet **Kibernetska varnost** (MAG, RST), ki zajem
 | `lab11` | Linux CTF |
 | `lab12` | Priprava varnostne politike |
 | `lab13` | Projektna naloga: Sistemski ali zunanji varnostni pregled |
+
+## Opombe
+
+**Uporaba AI:** Pri razvoju vsebine in pripravi dokumentacije je bilo uporabljeno orodje ChatGPT (OpenAI), ki je služilo kot pomoč pri generiranju idej, optimizaciji kode in oblikovanju besedil.  
+Vse končne rešitve so bile pregledane, preverjene in po potrebi prilagojene s strani avtorja projekta.
+
+## Reference
+
+OpenAI, (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/
