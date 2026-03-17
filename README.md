@@ -29,3 +29,7 @@ Vse končne rešitve so bile pregledane, preverjene in po potrebi prilagojene s 
 ## Reference
 
 OpenAI, (2025), *ChatGPT* (Aug 2025) [Large language model], https://chat.openai.com/
+
+## Avtor
+
+asist. Robi Pritržnik, mag. inž. rač. in splet. tehnol., Fakulteta za informacijske študije v Novem mestu, študijsko leto 2025/26
